@@ -22,4 +22,3 @@ export const userRouter = t.router({
       });*/
     }),
 });
-    // getUser: t.procedure.input(z.object({}))

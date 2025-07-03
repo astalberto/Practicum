@@ -1,10 +1,10 @@
 import { t } from "../trpc"
-import { userRouter } from "./user";
-import { authRouter } from "./auth";
-import { jobRouter } from "./job";
-import { ratingsRouter } from "./rating";
-import { workerRouter } from "./worker";
-import { serviceRouter } from "./service";
+import { userRouter } from "./user.router";
+import { authRouter } from "./auth.router";
+import { jobRouter } from "./job.router";
+import { ratingsRouter } from "./rating.router";
+import { workerRouter } from "./worker.router";
+import { serviceRouter } from "./service.router";
 console.log("Server/router");
 
 export const appRouter = t.router({

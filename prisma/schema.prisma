@@ -29,7 +29,7 @@ model Usuario {
   id          Int         @id @default(autoincrement())
   nombre      String
   correo      String      @unique
-  contraseña  String
+  contrasena  String
   tipo        TipoUsuario @default(CLIENTE)
   telefono    String
 
