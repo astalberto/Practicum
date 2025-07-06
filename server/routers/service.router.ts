@@ -4,13 +4,14 @@ import {
   getServiceSchema,
   updateServiceSchema,
   deleteServiceSchema,
+  paginationSchema
 } from "../schema/service.schema";
 import {
   createService,
   getService,
   updateService,
   deleteService,
-  getAllService
+  getAllService,
 } from "../services/service.service";
 
 export const serviceRouter = t.router({
@@ -20,7 +21,7 @@ export const serviceRouter = t.router({
 
   getService: t.procedure
     .input(getServiceSchema)
-    .query(async ({ input }) => getService(input.serviceName)),
+    .query(async ({ input }) => getService(input)),
 
   updateService: t.procedure
     .input(updateServiceSchema)
@@ -28,8 +29,12 @@ export const serviceRouter = t.router({
 
   deleteService: t.procedure
     .input(deleteServiceSchema)
-    .mutation(async ({ input }) => deleteService(input.serviceId)),
+    .mutation(async ({ input }) => deleteService(input)),
     
   getAllService: t.procedure
-    .query(async () => getAllService())
+    .input(paginationSchema.optional())
+    .query(async ({ input }) => {
+      return getAllService(input ?? {});
+    }),
+
 });

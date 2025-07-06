@@ -1,29 +1,35 @@
 import { prisma } from "./index";
+import { ProxyPrismaModel } from "../../prisma/proxy/prisma-proxy";
+import { PaginationData } from "../../prisma/proxy/types";
+import { Prisma, Servicio } from "@prisma/client";
 
-export const createServiceRepo = async (data: {
-  id?: string;
-  nombre: string;
-  descripcion: string;
-}) => {
+export const createServiceRepo = async (
+  data: Prisma.ServicioCreateInput,
+): Promise<Servicio> => {
   return prisma.servicio.create({
-    data: {
-      ...(data.id ? { id: data.id } : {}),
-      nombre: data.nombre,
-      descripcion: data.descripcion,
+    data,
+  });
+};
+
+export const findServiceByNameRepo = async (
+  serviceName: string,
+): Promise<Servicio | null> => {
+  return prisma.servicio.findFirst({
+    where: {
+      nombre: {
+        contains: serviceName,
+      },
     },
   });
 };
 
-export const findServiceByNameRepo = async (serviceName: string) => {
-  return prisma.servicio.findFirst({
-    where: { nombre: { contains: serviceName } },
-  });
-};
-
-export const updateServiceRepo = async (id: string, nombre: string) => {
+export const updateServiceRepo = async (
+  id: string,
+  data: Prisma.ServicioUpdateInput,
+): Promise<Servicio> => {
   return prisma.servicio.update({
     where: { id },
-    data: { nombre },
+    data,
   });
 };
 
@@ -32,6 +38,15 @@ export const deleteServiceRepo = async (id: string) => {
     where: { id },
   });
 };
-export const getAllServiceRepo = async () => {
-  return prisma.servicio.findMany()
+
+const ServicioModel = ProxyPrismaModel({
+  findMany: (params) => prisma.servicio.findMany(params as any),
+  count: (params) => prisma.servicio.count(params as any),
+});
+
+export const getAllServiceRepo = async (
+  pagination: PaginationData = {},
+) => {
+  return ServicioModel.findManyPaginated({}, pagination);
 };
+

@@ -5,40 +5,30 @@ import {
   deleteServiceRepo,
   getAllServiceRepo,
 } from "../repository/service.repository";
+import { PaginationData } from "../../prisma/proxy/types";
+import { CreateServiceInput, UpdateServiceInput, DeleteServiceInput } from "../schema/service.schema";
 
-export const createService = async ({
-  serviceId,
-  serviceName,
-  serviceDescription,
-}: {
-  serviceId?: string;
-  serviceName: string;
-  serviceDescription: string;
-}) => {
-  return createServiceRepo({
-    id: serviceId,
-    nombre: serviceName,
-    descripcion: serviceDescription,
+export const createService = async (data: CreateServiceInput) => {
+  return createServiceRepo(data);
+};
+
+export const getService = async ({ nombre }: { nombre: string }) => {
+  return findServiceByNameRepo(nombre);
+};
+
+
+export const updateService = async (data: UpdateServiceInput) => {
+  return updateServiceRepo(data.id, {
+    nombre: data.nombre,
+    descripcion: data.descripcion,
   });
 };
 
-export const getService = async (serviceName: string) => {
-  return findServiceByNameRepo(serviceName);
+export const deleteService = async (data: DeleteServiceInput) => {
+  return deleteServiceRepo(data.id);
 };
 
-export const updateService = async ({
-  serviceId,
-  serviceName,
-}: {
-  serviceId: string;
-  serviceName: string;
-}) => {
-  return updateServiceRepo(serviceId, serviceName);
+export const getAllService = async (pagination: PaginationData) => {
+  return getAllServiceRepo(pagination);
 };
 
-export const deleteService = async (serviceId: string) => {
-  return deleteServiceRepo(serviceId);
-};
-export const getAllService = async() => {
-  return getAllServiceRepo();
-};
