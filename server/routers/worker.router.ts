@@ -1,4 +1,4 @@
-import { zLocation } from "../db/zodSchemas/location";
+import { zLocation } from "../schema/location.schema";
 import { t } from "../trpc"
 import { z } from 'zod';
 

@@ -10,8 +10,7 @@ const client = createTRPCClient<AppRouter>({
 });
 
 async function main() {
-  const resultado = await client.sayHi.query();
-  console.log(resultado);
+
 }
 
 main();

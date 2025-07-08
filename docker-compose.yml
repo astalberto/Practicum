@@ -1,0 +1,25 @@
+services:
+  postgres:
+    container_name: dfw-db
+    image: postgres
+    environment:
+      POSTGRES_USER: dfw
+      POSTGRES_PASSWORD: dfw
+      PGDATA: /data/dfw
+    logging:
+      options:
+        max-size: 10m
+        max-file: "3"
+    volumes:
+      - dfw:/data/dfw
+    ports:
+      - "5438:5432"
+  # stripe:
+  #   logging:
+  #     options:
+  #       max-size: "1m"
+  #   image: stripe/stripe-cli
+  #   command: "listen --api-key ${STRIPE_API_KEY} --device-name local --forward-to host.docker.internal:4000/stripe/webhook"
+
+volumes:
+  dfw:

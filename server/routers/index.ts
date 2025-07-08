@@ -1,9 +1,10 @@
 import { t } from "../trpc"
-import { userRouter } from "./user";
-import { authRouter } from "./auth";
-import { jobRouter } from "./job";
-import { ratingsRouter } from "./rating";
-import { workerRouter } from "./worker";
+import { userRouter } from "./user.router";
+import { authRouter } from "./auth.router";
+import { jobRouter } from "./job.router";
+import { ratingsRouter } from "./rating.router";
+import { workerRouter } from "./worker.router";
+import { serviceRouter } from "./service.router";
 console.log("Server/router");
 
 export const appRouter = t.router({
@@ -11,7 +12,8 @@ export const appRouter = t.router({
     auth: authRouter,
     job: jobRouter,
     rating: ratingsRouter,
-    worker: workerRouter
+    worker: workerRouter,
+    service: serviceRouter
 });
 
-export const mergedRouter = t.mergeRouters(userRouter,authRouter,jobRouter,ratingsRouter,workerRouter,appRouter)
+export const mergedRouter = t.mergeRouters(userRouter,authRouter,jobRouter,ratingsRouter,workerRouter,appRouter,serviceRouter)

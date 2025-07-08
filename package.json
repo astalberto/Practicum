@@ -16,6 +16,7 @@
   "description": "",
   "main": "index.js",
   "dependencies": {
+    "@prisma/client": "^6.10.1",
     "@trpc/client": "^11.1.2",
     "@trpc/server": "^11.1.2",
     "acorn": "^8.14.1",
