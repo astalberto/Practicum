@@ -3,7 +3,11 @@ export type SortOrder = "asc" | "desc";
 export type PaginationData = {
   page?: number;
   limit?: number;
-  orderBy?: Record<string, SortOrder>;
+  orderBy?: string;
+  order?: "asc" | "desc";
+  searchField?: string;
+  searchOperator?: "contains" | "startsWith" | "endsWith" | "equals";
+  searchValue?: string;
 };
 
 export type ProxyFunctions = {
