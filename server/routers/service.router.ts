@@ -4,15 +4,15 @@ import {
   getServiceSchema,
   updateServiceSchema,
   deleteServiceSchema,
-  paginationSchema
 } from "../schema/service.schema";
 import {
   createService,
   getService,
   updateService,
   deleteService,
-  getAllService,
 } from "../services/service.service";
+import { paginationSchema } from "../schema/pagination.schema";
+import { getAllServicePaginated } from "../services/service.service";
 
 export const serviceRouter = t.router({
   createService: t.procedure
@@ -30,11 +30,10 @@ export const serviceRouter = t.router({
   deleteService: t.procedure
     .input(deleteServiceSchema)
     .mutation(async ({ input }) => deleteService(input)),
-    
-  getAllService: t.procedure
-    .input(paginationSchema.optional())
-    .query(async ({ input }) => {
-      return getAllService(input ?? {});
-    }),
 
+  getAllServicePaginated: t.procedure
+    .input(paginationSchema)
+    .query(async ({ input }) => {
+      return getAllServicePaginated(input);
+    }),
 });

@@ -1,7 +1,7 @@
 import { prisma } from "./index";
 import { ProxyPrismaModel } from "../../prisma/proxy/prisma-proxy";
-import { PaginationData } from "../../prisma/proxy/types";
 import { Prisma, Servicio } from "@prisma/client";
+import { PaginationData } from "../../prisma/proxy/types";
 
 export const createServiceRepo = async (
   data: Prisma.ServicioCreateInput,

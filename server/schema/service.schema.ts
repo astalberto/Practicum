@@ -29,6 +29,12 @@ export const deleteServiceSchema = z.object({
 export type DeleteServiceInput = z.infer<typeof deleteServiceSchema>;
 
 export const paginationSchema = z.object({
-  page: z.number().min(1).optional(),
-  limit: z.number().min(1).optional(),
+  page: z.number().optional(),
+  limit: z.number().optional(),
+  orderBy: z.object({
+    id: z.enum(["asc", "desc"]).optional(),
+    nombre: z.enum(["asc", "desc"]).optional(),
+    createdAt: z.enum(["asc", "desc"]).optional(),
+  }).optional()
 });
+export type PaginationSchamaInput = z.infer<typeof paginationSchema>;
