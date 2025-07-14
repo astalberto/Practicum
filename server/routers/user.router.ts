@@ -1,24 +1,37 @@
-import { t } from "../trpc"
-import { z } from 'zod';
+import { t } from "../trpc";
+import {
+  createUserSchema,
+  getUserSchema,
+  updateUserSchema,
+  deleteUserSchema,
+} from "../schema/user.schema";
+import { paginationSchema } from "../schema/pagination.schema";
+import {
+  createUser,
+  getUser,
+  updateUser,
+  deleteUser,
+  getAllUserPaginated,
+} from "../services/user.service";
 
 export const userRouter = t.router({
-    UpdateUser: t.procedure
-    .input(z.object({
-      id: z.string(),
-      name: z.string(),
-      email: z.string().email(),
-      password: z.string(),
-      phone: z.string()
-    }))
-    .mutation(({ input, ctx }) => {
-      /*return ctx.db.usuario.update({
-        where: { id: input.id },
-        data: {
-          nombre: input.name,
-          correo: input.email,
-          contraseña: input.password,
-          telefono: input.phone
-        }
-      });*/
-    }),
+  createUser: t.procedure
+    .input(createUserSchema)
+    .mutation(async ({ input }) => createUser(input)),
+
+  getUser: t.procedure
+    .input(getUserSchema)
+    .query(async ({ input }) => getUser(input)),
+
+  updateUser: t.procedure
+    .input(updateUserSchema)
+    .mutation(async ({ input }) => updateUser(input)),
+
+  deleteUser: t.procedure
+    .input(deleteUserSchema)
+    .mutation(async ({ input }) => deleteUser(input)),
+
+  getAllUserPaginated: t.procedure
+    .input(paginationSchema)
+    .query(async ({ input }) => getAllUserPaginated(input)),
 });
