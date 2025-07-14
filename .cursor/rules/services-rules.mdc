@@ -1,0 +1,18 @@
+---
+description: Services Layer Rules
+globs: *.service.ts
+alwaysApply: false
+---
+
+# Services Layer Rules
+
+- Each service file should be named `[model].service.ts` and placed in the `server/services/` directory.
+- Implement async functions for each CRUD operation, calling the corresponding repository functions:
+  - `createModel`
+  - `getModel`
+  - `updateModel`
+  - `deleteModel`
+  - `getAllModelPaginated` (if applicable)
+- Service functions should receive validated input (from the schema layer) and return the result of repository operations.
+- Business logic, if any, should be placed here (not in the repository or router).
+- Export all service functions for use in the router layer.

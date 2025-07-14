@@ -1,83 +1,33 @@
 ---
-description: Uso para la creacion de un crud
+description: Rules for a prisma Crud
 globs: 
 alwaysApply: false
 ---
-# Reglas para Crear un CRUD de Prisma
+# Rules for a prisma Crud
 
-## 1. Estructura de Archivos
+To implement a CRUD for any Prisma model in this project, follow these guidelines:
 
-Para cada modelo de Prisma, crea los siguientes archivos:
-- `server/schema/[modelo].schema.ts`
-- `server/routers/[modelo].router.ts`
-- `server/repository/[modelo].repository.ts`
-- `server/services/[modelo].service.ts`
+## 1. File Structure
+- For each model, create the following files:
+  - `server/schema/[model].schema.ts`
+  - `server/routers/[model].router.ts`
+  - `server/repository/[model].repository.ts`
+  - `server/services/[model].service.ts`
 
-## 2. Esquema de Validación (schema)
-- Define un esquema Zod para cada operación: crear, obtener, actualizar y eliminar.
-- Si el modelo requiere paginación, define los esquemas de paginación en un archivo aparte (por ejemplo, `pagination.schema.ts`).
-- Ejemplo:
-  ```ts
-  export const createModeloSchema = z.object({
-    id: z.string().uuid().optional(),
-    campo1: z.string(),
-    // ...otros campos
-  });
-  export type CreateModeloInput = z.infer<typeof createModeloSchema>;
-  // Repite para get, update, delete, y paginación
-  ```
+## 2. Layer Responsibilities
+- **Schema Layer:** Validation and type definitions using Zod. See `.cursor/rules` in `server/schema/`.
+- **Repository Layer:** Data access logic using Prisma. See `.cursor/rules` in `server/repository/`.
+- **Services Layer:** Business logic and orchestration. See `.cursor/rules` in `server/services/`.
+- **Routers Layer:** API endpoints and input validation. See `.cursor/rules` in `server/routers/`.
 
-## 3. Repositorio (repository)
-- Implementa funciones asíncronas para cada operación usando Prisma:
-  - Crear: `createModeloRepo`
-  - Buscar por campo único o id: `findModeloByIdRepo`
-  - Actualizar: `updateModeloRepo`
-  - Eliminar: `deleteModeloRepo`
-- Para paginación, usa `ProxyPrismaModel` y define una función como:
-  ```ts
-  const ModeloProxy = ProxyPrismaModel({
-    findMany: (params) => prisma.modelo.findMany(params as any),
-    count: (params) => prisma.modelo.count(params as any),
-  });
-  export const getAllModeloRepo = async (pagination: PaginationData = {}) => {
-    return ModeloProxy.findManyPaginated({}, pagination);
-  };
-  ```
+## 3. Pagination
+- If the model supports pagination, use `ProxyPrismaModel` and the shared pagination schema as shown in the repository and router rules.
 
-## 4. Servicio (service)
-- Implementa funciones que llamen a las del repositorio y reciban los datos validados del schema:
-  - `createModelo`
-  - `getModelo`
-  - `updateModelo`
-  - `deleteModelo`
-  - `getAllModeloPaginated` (si aplica paginación)
-- Cada función debe recibir el tipo de input correspondiente.
+## 4. Naming Conventions
+- Use singular names for models and plural for lists.
+- Maintain consistent naming and structure across all layers.
 
-## 5. Router (router)
-- Define un router tRPC con procedimientos para cada operación:
-  - `.mutation` para crear, actualizar y eliminar.
-  - `.query` para obtener y listar.
-- Usa los esquemas de validación y llama a las funciones del servicio.
-- Ejemplo:
-  ```ts
-  export const modeloRouter = t.router({
-    createModelo: t.procedure.input(createModeloSchema).mutation(async ({ input }) => createModelo(input)),
-    getModelo: t.procedure.input(getModeloSchema).query(async ({ input }) => getModelo(input)),
-    updateModelo: t.procedure.input(updateModeloSchema).mutation(async ({ input }) => updateModelo(input)),
-    deleteModelo: t.procedure.input(deleteModeloSchema).mutation(async ({ input }) => deleteModelo(input)),
-    getAllModeloPaginated: t.procedure.input(paginationSchema).query(async ({ input }) => getAllModeloPaginated(input)),
-  });
-  ```
-
-## 6. Convenciones
-- Usa nombres en singular para el modelo y en plural para listados.
-- Mantén la estructura y estilo de los archivos `service` y `repository`.
-- Asegúrate de importar/exportar correctamente los tipos y funciones.
+These rules ensure that all CRUDs are consistent, scalable, and maintainable throughout the project. For details, refer to the specific rules in each layer's `.cursor/rules` file.
 - Si el modelo tiene campos de fecha, considera agregarlos a la lógica de búsqueda y ordenación en la paginación.
 
----
-
 Estas reglas te permitirán crear un CRUD consistente y escalable para cualquier tabla de Prisma en este proyecto, incluyendo soporte para paginación avanzada.
-
-
-

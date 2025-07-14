@@ -1,0 +1,17 @@
+---
+description: Schema Layer Rules
+globs: *.schema.ts
+alwaysApply: false
+---
+
+# Schema Layer Rules
+
+- Each schema file should be named `[model].schema.ts` and placed in the `server/schema/` directory.
+- Use Zod to define validation schemas for all CRUD operations:
+  - `createModelSchema`
+  - `getModelSchema`
+  - `updateModelSchema`
+  - `deleteModelSchema`
+- If the model supports pagination, define or import a pagination schema (e.g., `paginationSchema`).
+- Export TypeScript types inferred from each Zod schema for use in the service and router layers.
+- Schemas should only contain validation logic and type definitions, not business logic or data access.
