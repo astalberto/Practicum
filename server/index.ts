@@ -31,4 +31,4 @@ const server = createServer((req, res) => {
 });
 
 server.listen(4000);
-console.log('Servidor tRPC escuchando en http://localhost:4000');
+console.log('Servidor tRPC escuchando en http://localhost:4000/panel');

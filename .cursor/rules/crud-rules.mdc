@@ -1,0 +1,33 @@
+---
+description: Rules for a prisma Crud
+globs: 
+alwaysApply: false
+---
+# Rules for a prisma Crud
+
+To implement a CRUD for any Prisma model in this project, follow these guidelines:
+
+## 1. File Structure
+- For each model, create the following files:
+  - `server/schema/[model].schema.ts`
+  - `server/routers/[model].router.ts`
+  - `server/repository/[model].repository.ts`
+  - `server/services/[model].service.ts`
+
+## 2. Layer Responsibilities
+- **Schema Layer:** Validation and type definitions using Zod. See `.cursor/rules` in `server/schema/`.
+- **Repository Layer:** Data access logic using Prisma. See `.cursor/rules` in `server/repository/`.
+- **Services Layer:** Business logic and orchestration. See `.cursor/rules` in `server/services/`.
+- **Routers Layer:** API endpoints and input validation. See `.cursor/rules` in `server/routers/`.
+
+## 3. Pagination
+- If the model supports pagination, use `ProxyPrismaModel` and the shared pagination schema as shown in the repository and router rules.
+
+## 4. Naming Conventions
+- Use singular names for models and plural for lists.
+- Maintain consistent naming and structure across all layers.
+
+These rules ensure that all CRUDs are consistent, scalable, and maintainable throughout the project. For details, refer to the specific rules in each layer's `.cursor/rules` file.
+- Si el modelo tiene campos de fecha, considera agregarlos a la lógica de búsqueda y ordenación en la paginación.
+
+Estas reglas te permitirán crear un CRUD consistente y escalable para cualquier tabla de Prisma en este proyecto, incluyendo soporte para paginación avanzada.

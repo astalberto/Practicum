@@ -1,0 +1,26 @@
+---
+description: Routers Layer Rules
+globs: *.router.ts
+alwaysApply: false
+---
+
+# Routers Layer Rules
+
+- Each router file should be named `[model].router.ts` and placed in the `server/routers/` directory.
+- Use tRPC to define all endpoints for the model.
+- Each router should expose procedures for all CRUD operations:
+  - `.mutation` for create, update, and delete
+  - `.query` for get and list (including paginated lists)
+- Input validation must use Zod schemas imported from the schema layer.
+- Each procedure should call the corresponding service function.
+- Example:
+  ```ts
+  export const modelRouter = t.router({
+    createModel: t.procedure.input(createModelSchema).mutation(async ({ input }) => createModel(input)),
+    getModel: t.procedure.input(getModelSchema).query(async ({ input }) => getModel(input)),
+    updateModel: t.procedure.input(updateModelSchema).mutation(async ({ input }) => updateModel(input)),
+    deleteModel: t.procedure.input(deleteModelSchema).mutation(async ({ input }) => deleteModel(input)),
+    getAllModelPaginated: t.procedure.input(paginationSchema).query(async ({ input }) => getAllModelPaginated(input)),
+  });
+  ```
+- Export the router for use in the main app router.

@@ -1,0 +1,27 @@
+---
+description: Repository Layer Rules
+globs: *.repository.ts
+alwaysApply: false
+---
+
+# Repository Layer Rules
+
+- Each repository file should be named `[model].repository.ts` and placed in the `server/repository/` directory.
+- Use Prisma Client for all database operations.
+- Implement async functions for each CRUD operation:
+  - `create[Model]Repo`
+  - `find[Model]ByIdRepo` or by unique field
+  - `update[Model]Repo`
+  - `delete[Model]Repo`
+- For pagination, use `ProxyPrismaModel` and implement a function like:
+  ```ts
+  const ModelProxy = ProxyPrismaModel({
+    findMany: (params) => prisma.model.findMany(params as any),
+    count: (params) => prisma.model.count(params as any),
+  });
+  export const getAllModelRepo = async (pagination: PaginationData = {}) => {
+    return ModelProxy.findManyPaginated({}, pagination);
+  };
+  ```
+- Always export all repository functions for use in the service layer.
+- Keep repository files focused only on data access logic, without business logic or validation.
