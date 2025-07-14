@@ -5,6 +5,7 @@ import { jobRouter } from "./job.router";
 import { ratingsRouter } from "./rating.router";
 import { workerRouter } from "./worker.router";
 import { serviceRouter } from "./service.router";
+import { locationRouter } from "./location.router";
 console.log("Server/router");
 
 export const appRouter = t.router({
@@ -13,7 +14,8 @@ export const appRouter = t.router({
     job: jobRouter,
     rating: ratingsRouter,
     worker: workerRouter,
-    service: serviceRouter
+    service: serviceRouter,
+    location: locationRouter
 });
 
-export const mergedRouter = t.mergeRouters(userRouter,authRouter,jobRouter,ratingsRouter,workerRouter,appRouter,serviceRouter)
+export const mergedRouter = t.mergeRouters(userRouter,authRouter,jobRouter,ratingsRouter,workerRouter,appRouter,serviceRouter,locationRouter)
