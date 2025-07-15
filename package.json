@@ -5,10 +5,12 @@
   "outDir": "./dist",
   "esModuleInterop": true,
   "strict": true,
+  "packageManager": "npm@11.4.0",
   "devDependencies": {
     "@types/node": "^22.15.18",
     "trpc-ui": "^1.0.15",
     "ts-node": "^10.9.2",
+    "turbo": "^2.5.4",
     "typescript": "^5.8.3"
   },
   "name": "practicum",
@@ -33,10 +35,17 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev:server": "ts-node server/index.ts",
-    "dev:client": "ts-node client/index.ts"
+    "dev:client": "ts-node client/index.ts",
+    "dev": "ts-node-dev src/index.ts",
+    "build": "tsc",
+    "lint": "eslint .",
+    "check-types": "tsc --noEmit"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "type": "commonjs"
+  "type": "commonjs",
+  "workspaces": [
+    "apps/*"
+  ]
 }
