@@ -4,14 +4,14 @@ import {
   updateUserRepo,
   deleteUserRepo,
   getAllUserRepo,
-} from "../repository/user.repository";
+} from "@db/repository/user.repository";
 import {
   CreateUserInput,
   UpdateUserInput,
   DeleteUserInput,
   GetUserInput,
-} from "../schema/user.schema";
-import { PaginationSchemaInput } from "../schema/pagination.schema";
+} from "@schema/user.schema";
+import { PaginationSchemaInput } from "@schema/pagination.schema";
 
 export const createUser = async (data: CreateUserInput) => {
   return createUserRepo(data);

@@ -4,15 +4,15 @@ import {
   getUserSchema,
   updateUserSchema,
   deleteUserSchema,
-} from "../schema/user.schema";
-import { paginationSchema } from "../schema/pagination.schema";
+} from "@schema/user.schema";
+import { paginationSchema } from "@schema/pagination.schema";
 import {
   createUser,
   getUser,
   updateUser,
   deleteUser,
   getAllUserPaginated,
-} from "../services/user.service";
+} from "@services/user.service";
 
 export const userRouter = t.router({
   createUser: t.procedure

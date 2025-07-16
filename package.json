@@ -37,7 +37,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev:server": "ts-node apps/backend/server/index.ts",
     "dev:client": "ts-node client/index.ts",
-    "dev": "turbo run dev --filter=backend-server",
+    "dev": "turbo run dev --filter=@practicas/backend-server",
     "build": "tsc",
     "lint": "eslint .",
     "check-types": "tsc --noEmit"

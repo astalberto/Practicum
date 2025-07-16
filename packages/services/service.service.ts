@@ -4,9 +4,9 @@ import {
   updateServiceRepo,
   deleteServiceRepo,
   getAllServiceRepo ,
-} from "../repository/service.repository";
-import { PaginationSchemaInput } from "../schema/pagination.schema";
-import { CreateServiceInput, UpdateServiceInput, DeleteServiceInput } from "../schema/service.schema";
+} from "@db/repository/service.repository";
+import { PaginationSchemaInput } from "@schema/pagination.schema";
+import { CreateServiceInput, UpdateServiceInput, DeleteServiceInput } from "@schema/service.schema";
 
 export const createService = async (data: CreateServiceInput) => {
   return createServiceRepo(data);

@@ -1,0 +1,19 @@
+{
+    "name": "@practicas/db",
+    "extends": "../../tsconfig.json",
+    "compilerOptions": {
+        "outDir": "dist",
+        "rootDir": "./",
+        "declaration": true,
+        "composite": true,
+        "strict": true,
+        "esModuleInterop": true
+    },
+    "include": [
+        "**/*.ts"
+    ],
+    "exclude": [
+        "node_modules",
+        "dist"
+    ]
+}

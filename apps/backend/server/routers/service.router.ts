@@ -4,15 +4,15 @@ import {
   getServiceSchema,
   updateServiceSchema,
   deleteServiceSchema,
-} from "../schema/service.schema";
+} from "@schema/service.schema"; 
 import {
   createService,
   getService,
   updateService,
   deleteService,
-} from "../services/service.service";
-import { paginationSchema } from "../schema/pagination.schema";
-import { getAllServicePaginated } from "../services/service.service";
+} from "@services/service.service"; 
+import { paginationSchema } from "@schema/pagination.schema"; 
+import { getAllServicePaginated } from "@services/service.service"; 
 
 export const serviceRouter = t.router({
   createService: t.procedure
