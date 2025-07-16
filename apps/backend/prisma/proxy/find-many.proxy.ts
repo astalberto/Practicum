@@ -1,4 +1,4 @@
-import { Paginated } from "../../server/utils/paginated";
+import { Paginated } from "../../server/utils/paginated"; 
 import { PaginationData, ProxyFunctions } from "./types";
 
 const dateFields = ["createdAt", "updatedAt", "fecha"];

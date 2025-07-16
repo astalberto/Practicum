@@ -1,5 +1,5 @@
 import { prisma } from "./index";
-import { ProxyPrismaModel } from "../../prisma/proxy/prisma-proxy";
+import { ProxyPrismaModel } from "../../prisma/proxy/prisma-proxy"; 
 import { Prisma, Usuario } from "@prisma/client";
 import { PaginationData } from "../../prisma/proxy/types";
 

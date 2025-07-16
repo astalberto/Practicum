@@ -1,5 +1,5 @@
 import { createTRPCClient, httpBatchLink } from '@trpc/client';
-import type { AppRouter } from '../server/index';
+import type { AppRouter } from '../backend/server/index';
 console.log("Client/index");
 const client = createTRPCClient<AppRouter>({
   links: [
