@@ -9,5 +9,5 @@
       "moduleResolution": "node",
       "skipLibCheck": true
     },
-    "include": ["server", "client"]
+    "include": ["server", "apps/client"]
   }

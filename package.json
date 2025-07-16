@@ -5,13 +5,14 @@
   "outDir": "./dist",
   "esModuleInterop": true,
   "strict": true,
-  "packageManager": "npm@11.4.0",
+  "packageManager": "pnpm@8.15.4",
   "devDependencies": {
     "@types/node": "^22.15.18",
     "trpc-ui": "^1.0.15",
     "ts-node": "^10.9.2",
     "turbo": "^2.5.4",
-    "typescript": "^5.8.3"
+    "typescript": "^5.8.3",
+    "@prisma/client": "^6.10.1"
   },
   "name": "practicum",
   "version": "1.0.0",
@@ -34,9 +35,9 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev:server": "ts-node server/index.ts",
+    "dev:server": "ts-node apps/backend/server/index.ts",
     "dev:client": "ts-node client/index.ts",
-    "dev": "ts-node-dev src/index.ts",
+    "dev": "turbo run dev --filter=backend-server",
     "build": "tsc",
     "lint": "eslint .",
     "check-types": "tsc --noEmit"
@@ -46,6 +47,6 @@
   "license": "ISC",
   "type": "commonjs",
   "workspaces": [
-    "apps/*"
+    "apps/*", "apps/*/*"
   ]
 }
