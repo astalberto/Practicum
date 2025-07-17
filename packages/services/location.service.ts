@@ -4,14 +4,14 @@ import {
     updateUbicacionRepo,
     deleteUbicacionRepo,
     getAllUbicacionRepo,
-  } from "../repository/location.repository";
+  } from "@db/repository/location.repository";
   import {
     CreateUbicacionInput,
     UpdateUbicacionInput,
     DeleteUbicacionInput,
     GetUbicacionInput,
-  } from "../schema/location.schema";
-import { PaginationSchemaInput } from "../schema/pagination.schema";
+  } from "@schema/location.schema";
+import { PaginationSchemaInput } from "@schema/pagination.schema";
   
   export const createUbicacion = async (data: CreateUbicacionInput) => {
     return createUbicacionRepo(data);

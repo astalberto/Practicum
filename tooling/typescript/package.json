@@ -1,0 +1,17 @@
+{
+  "name": "@lv8/tsconfig",
+  "private": true,
+  "version": "1.0.0",
+  "exports": {
+    "./base.json": "./base.json"
+  },
+  "files": [
+    "*.json"
+  ],
+  "scripts": {
+    "spell:check": "cspell --config cspell.json ."
+  },
+  "devDependencies": {
+    "cspell": "catalog:"
+  }
+}

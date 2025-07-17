@@ -4,15 +4,15 @@ import {
   getUbicacionSchema,
   updateUbicacionSchema,
   deleteUbicacionSchema,
-} from "../schema/location.schema";
-import { paginationSchema } from "../schema/pagination.schema";
+} from "@schema/location.schema"; 
+import { paginationSchema } from "@schema/pagination.schema";
 import {
   createUbicacion,
   getUbicacion,
   updateUbicacion,
   deleteUbicacion,
   getAllUbicacionPaginated,
-} from "../services/location.service";
+} from "@services/location.service"; 
 
 export const locationRouter = t.router({
   createUbicacion: t.procedure

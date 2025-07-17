@@ -1,7 +1,7 @@
 import { prisma } from "./index";
-import { ProxyPrismaModel } from "../../prisma/proxy/prisma-proxy";
+import { ProxyPrismaModel } from "../prisma/proxy/prisma-proxy";
 import { Prisma, Ubicacion } from "@prisma/client";
-import { PaginationData } from "../../prisma/proxy/types";
+import { PaginationData } from "../prisma/proxy/types";
 
 export const createUbicacionRepo = async (
   data: Prisma.UbicacionCreateInput,
