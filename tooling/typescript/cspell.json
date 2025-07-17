@@ -1,0 +1,5 @@
+{
+  "import": [
+    "../spell-check/cspell.json"
+  ]
+}
