@@ -1,18 +1,36 @@
 {
   "target": "ES2020",
   "module": "CommonJS",
-  "rootDir": "./src",
+  "rootDir": ".",
   "outDir": "./dist",
   "esModuleInterop": true,
   "strict": true,
   "packageManager": "pnpm@8.15.4",
   "devDependencies": {
+    "@prisma/client": "^6.10.1",
+    "@types/jest": "^30.0.0",
     "@types/node": "^22.15.18",
+    "jest": "^30.0.4",
     "trpc-ui": "^1.0.15",
+    "ts-jest": "^29.4.0",
     "ts-node": "^10.9.2",
     "turbo": "^2.5.4",
-    "typescript": "^5.8.3",
-    "@prisma/client": "^6.10.1"
+    "typescript": "^5.8.3"
+  },
+  "jest": {
+    "preset": "ts-jest",
+    "testEnvironment": "node",
+    "transform": {
+      "^.+\\.tsx?$": "ts-jest"
+    },
+    "moduleNameMapper": {
+      "^@db/(.*)$": "<rootDir>/packages/db/$1",
+      "^@schema/(.*)$": "<rootDir>/packages/schema/$1",
+      "^@services/(.*)$": "<rootDir>/packages/services/$1"
+    },
+    "testMatch": [
+      "**/*.unit.test.ts"
+    ]
   },
   "name": "practicum",
   "version": "1.0.0",
@@ -34,7 +52,7 @@
     "zod": "^3.24.4"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest",
     "dev:server": "ts-node apps/backend/server/index.ts",
     "dev:client": "ts-node client/index.ts",
     "dev": "turbo run dev --filter=@practicas/backend-server",
@@ -47,6 +65,7 @@
   "license": "ISC",
   "type": "commonjs",
   "workspaces": [
-    "apps/*", "apps/*/*"
+    "apps/*",
+    "apps/*/*"
   ]
 }
