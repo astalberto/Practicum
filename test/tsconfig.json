@@ -1,0 +1,16 @@
+{
+    "extends": "../tooling/typescript/base.json",
+    "compilerOptions": {
+        "target": "ES2022",
+        "types": [
+            "jest",
+            "node"
+        ]
+    },
+    "include": [
+        "**/*.ts"
+    ],
+    "exclude": [
+        "node_modules"
+    ]
+}
